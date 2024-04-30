@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 494869677}
   m_Layer: 0
   m_Name: TerrenoPruebas
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -879,6 +879,7 @@ MonoBehaviour:
   vertical: 0
   speed: 0
   turnSpeed: 0
+  jumpForce: 0
 --- !u!23 &1996273749
 MeshRenderer:
   m_ObjectHideFlags: 0
