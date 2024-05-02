@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody _rb;
-    private PlayerInput _playerActions;
+    Rigidbody rb;
+    PlayerInput playerActions;
 
     public float horizontal, vertical, speed, turnSpeed, jumpForce;
-    private bool _isGrounded, _doJump;
+    bool isGrounded, doJump;
 
     public static PlayerMovement Instance { get; private set; }
 
@@ -30,41 +30,41 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _playerActions = GetComponent<PlayerInput>();
-        _rb = GetComponent<Rigidbody>();
+        playerActions = GetComponent<PlayerInput>();
+        rb = GetComponent<Rigidbody>();
 
         speed = 5;
-        jumpForce = 2;
+        jumpForce = 4;
         turnSpeed = 150;
 
-        _isGrounded = false;
-        _doJump = false;
+        isGrounded = false;
+        doJump = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 move = _playerActions.actions["Move"].ReadValue<Vector2>();
+        Vector2 move = playerActions.actions["Move"].ReadValue<Vector2>();
         Vector3 fwd = (transform.forward * move.y) * speed;
-        fwd.y = _rb.velocity.y;
+        fwd.y = rb.velocity.y;
 
 
-        _rb.velocity = fwd;
+        rb.velocity = fwd;
         transform.Rotate(0, move.x * turnSpeed * Time.deltaTime, 0);
 
-        if (_isGrounded)
+        if (isGrounded && !PuzzleManager.Instance.inPuzzleMode)
         {
-            _doJump = _playerActions.actions["Jump"].ReadValue<float>() == 1;
+            doJump = playerActions.actions["Jump"].ReadValue<float>() == 1;
         }
     }
 
     private void FixedUpdate()
     {
-        if (_doJump)
+        if (doJump)
         {
-            _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            _isGrounded = true;
-            _doJump = false;
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+            doJump = false;
         }
     }
 
@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.collider.CompareTag("Terrain")) 
         {
-            _isGrounded = true;
+            isGrounded = true;
         }
     }
 }
