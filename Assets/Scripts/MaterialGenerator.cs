@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -11,6 +12,7 @@ public class MaterialGenerator : MonoBehaviour
     private string pathMaterialFolder = "";
 
     public string actualLevel = "";
+    private List<GameObject> gameObjects = new List<GameObject>();
 
     Material material;
 
@@ -35,6 +37,10 @@ public class MaterialGenerator : MonoBehaviour
     {
         pathMaterialFolder = Application.dataPath + "/Materials";
         
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Terrain"))
+        {
+            gameObjects.Add(go);
+        }
     }
 
     // Update is called once per frame
@@ -47,8 +53,8 @@ public class MaterialGenerator : MonoBehaviour
     {
         material = new Material(Shader.Find("Standard"));
 
-        colorSelect = Random.Range(0, 10);
-        colorSaturation = Random.Range(1, 10);
+        colorSelect = UnityEngine.Random.Range(0, 10);
+        colorSaturation = UnityEngine.Random.Range(1, 10);
 
         actualLevel += colorSaturation;
 
@@ -98,7 +104,7 @@ public class MaterialGenerator : MonoBehaviour
         }
     }
 
-    public void GenerateNewColor(Renderer rend)
+    public void GenerateNewColor()
     {
         GenerateNewMaterial();
 
@@ -108,6 +114,9 @@ public class MaterialGenerator : MonoBehaviour
 
         AssetDatabase.CreateAsset(material, "Assets/Materials/Material" + countMaterials +".mat");
 
-        rend.material = material;
+        foreach(GameObject gameObject in gameObjects)
+        {
+            gameObject.GetComponent<Renderer>().material = material;
+        }
     }
 }
