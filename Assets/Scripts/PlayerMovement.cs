@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
     PlayerInput playerActions;
+    Animator animator;
 
     public float horizontal, vertical, speed, turnSpeed, jumpForce;
     bool isGrounded, doJump;
@@ -32,10 +33,11 @@ public class PlayerMovement : MonoBehaviour
     {
         playerActions = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
 
-        speed = 5;
+        speed = 8;
         jumpForce = 4;
-        turnSpeed = 150;
+        turnSpeed = 90;
 
         isGrounded = false;
         doJump = false;
@@ -51,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = fwd;
         transform.Rotate(0, move.x * turnSpeed * Time.deltaTime, 0);
+
+        animator.SetFloat("Velocidad", move.y);
 
         if (isGrounded && !PuzzleManager.Instance.inPuzzleMode)
         {
