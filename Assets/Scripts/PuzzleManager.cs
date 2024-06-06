@@ -43,7 +43,6 @@ public class PuzzleManager : MonoBehaviour
         if (isPuzzleFinished)
         {
             GameManager.Instance.isPuzzleCompleted = true;
-            SceneManager.LoadSceneAsync(SceneManager.GetSceneByName(GameManager.Instance.gameSceneActive).buildIndex);
         }
     }
 }

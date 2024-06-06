@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class PlayerMovement : MonoBehaviour
     PlayerInput playerActions;
     Animator animator;
 
-    public float horizontal, vertical, speed, turnSpeed, jumpForce;
+    public float speed, turnSpeed, jumpForce;
     bool isGrounded, doJump;
+    private bool stayInPlate;
 
     public static PlayerMovement Instance { get; private set; }
 
@@ -55,10 +57,20 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(0, move.x * turnSpeed * Time.deltaTime, 0);
 
         animator.SetFloat("Velocidad", move.y);
+        animator.SetBool("Salto", doJump);
 
         if (isGrounded && !PuzzleManager.Instance.inPuzzleMode)
         {
             doJump = playerActions.actions["Jump"].ReadValue<float>() == 1;
+        }
+
+        if (stayInPlate)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PuzzleManager.Instance.inPuzzleMode = true;
+                SceneManager.LoadScene(GameManager.Instance.gameScenePuzzle);
+            }
         }
     }
 
@@ -77,6 +89,15 @@ public class PlayerMovement : MonoBehaviour
         if (collision.collider.CompareTag("Terrain")) 
         {
             isGrounded = true;
+        }
+
+        if (collision.collider.CompareTag("PrincipalPlate") && !GameManager.Instance.noMorePuzzles)
+        {
+            stayInPlate = true;
+        }
+        else
+        {
+            stayInPlate = false;
         }
     }
 }

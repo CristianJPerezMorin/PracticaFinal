@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
 
 public class MaterialGenerator : MonoBehaviour
 {
-    public int colorSelect;
+    public int colorSelect, countMaterials;
     public int colorSaturation;
     private string pathMaterialFolder = "";
 
@@ -20,7 +22,7 @@ public class MaterialGenerator : MonoBehaviour
 
     private void Awake()
     {
-        // If there is an instance, and it's not me, delete myself.
+        // If there is an instance, and it's not me, delete myself
 
         if (Instance != null && Instance != this)
         {
@@ -35,12 +37,31 @@ public class MaterialGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pathMaterialFolder = Application.dataPath + "/Materials";
-        
+        pathMaterialFolder = Application.dataPath + "/Resources/Generates";
+
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Terrain"))
         {
             gameObjects.Add(go);
         }
+
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Wall"))
+        {
+            gameObjects.Add(go);
+        }
+
+        if (SceneManager.GetActiveScene().name.Contains("Puzzle") || GameManager.Instance.noMorePuzzles || PuzzleManager.Instance.inPuzzleMode)
+        {
+            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(pathMaterialFolder);
+            countMaterials = dir.GetFiles().Length;
+
+            material = Resources.Load<Material>("Generates/Material" + ((countMaterials / 2) - 1));
+        }
+        else
+        {
+            GenerateNewColor();
+        }
+
+        ApplyMaterialToTheScenery();
     }
 
     // Update is called once per frame
@@ -112,9 +133,12 @@ public class MaterialGenerator : MonoBehaviour
         int countMaterials = dir.GetFiles().Length;
         if (countMaterials != 0 ) { countMaterials /= 2; }
 
-        AssetDatabase.CreateAsset(material, "Assets/Materials/Material" + countMaterials +".mat");
+        AssetDatabase.CreateAsset(material, "Assets/Resources/Generates/Material" + countMaterials +".mat");
+    }
 
-        foreach(GameObject gameObject in gameObjects)
+    public void ApplyMaterialToTheScenery()
+    {
+        foreach (GameObject gameObject in gameObjects)
         {
             gameObject.GetComponent<Renderer>().material = material;
         }
