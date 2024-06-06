@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
         }
 
-        if (collision.collider.CompareTag("PrincipalPlate") && !GameManager.Instance.noMorePuzzles)
+        if (collision.collider.CompareTag("PrincipalPlate") && !GameManager.Instance.noMorePuzzles && !PuzzleManager.Instance.inPuzzleMode)
         {
             stayInPlate = true;
         }
