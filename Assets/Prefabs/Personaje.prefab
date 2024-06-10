@@ -52,13 +52,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Personaje
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 06a339e6d43151045845cfcc0f9799d2, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 06a339e6d43151045845cfcc0f9799d2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5435835629241659203}
+      addedObject: {fileID: -1908851497074977867}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 06a339e6d43151045845cfcc0f9799d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3931720158190283226}
@@ -77,7 +81,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 06a339e6d43151045845cfcc0f9799d2, type: 3}
   m_PrefabInstance: {fileID: 7329180508506334519}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &5435835629241659203
+--- !u!136 &-1908851497074977867
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,10 +100,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
-  m_Height: 4.5
+  m_Radius: 1
+  m_Height: 5
   m_Direction: 1
-  m_Center: {x: 0, y: 2.2, z: 0}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!54 &3931720158190283226
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -139,8 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92eea1a39fe68144cbf7d7b81faa4256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontal: 0
-  vertical: 0
   speed: 0
   turnSpeed: 0
   jumpForce: 0

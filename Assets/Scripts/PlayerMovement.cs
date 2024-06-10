@@ -90,8 +90,11 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
         }
+    }
 
-        if (collision.collider.CompareTag("PrincipalPlate") && !GameManager.Instance.noMorePuzzles && !PuzzleManager.Instance.inPuzzleMode)
+    private void OnTriggerStay(Collider collision)
+    {
+        if (collision.CompareTag("PrincipalPlate") && !GameManager.Instance.noMorePuzzles && !PuzzleManager.Instance.inPuzzleMode)
         {
             stayInPlate = true;
         }

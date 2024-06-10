@@ -11,9 +11,10 @@ public class MaterialGenerator : MonoBehaviour
 {
     public int colorSelect, countMaterials;
     public int colorSaturation;
-    private string pathMaterialFolder = "";
 
+    private string pathMaterialFolder = "";
     public string actualLevel = "";
+
     private List<GameObject> gameObjects = new List<GameObject>();
 
     Material material;
@@ -49,7 +50,7 @@ public class MaterialGenerator : MonoBehaviour
             gameObjects.Add(go);
         }
 
-        if (SceneManager.GetActiveScene().name.Contains("Puzzle") || GameManager.Instance.noMorePuzzles || PuzzleManager.Instance.inPuzzleMode)
+        if (SceneManager.GetActiveScene().name.Contains("Puzzle") || ((GameManager.Instance.isPuzzleCompleted || GameManager.Instance.noMorePuzzles) && SceneManager.GetActiveScene().name.Contains("Active")))
         {
             System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(pathMaterialFolder);
             countMaterials = dir.GetFiles().Length;

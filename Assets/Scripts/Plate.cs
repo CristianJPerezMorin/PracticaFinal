@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Plate : MonoBehaviour
 {
     private bool activePlate = false;
+    public int countTouch = 0;
 
     Material material;
 
@@ -21,17 +22,26 @@ public class Plate : MonoBehaviour
     {
         if(activePlate)
         {
-            Debug.Log("Hola");
             gameObject.GetComponent<Renderer>().material = material;
+        }
+
+        if(countTouch == 2)
+        {
+            PuzzleManager.Instance.isPuzzleFailed = true;
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.collider.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hola2");
+            if(countTouch == 0)
+            {
+                EndPlate.Instance.platesActive++;
+            }
+
             activePlate = true;
+            countTouch++;
         }
     }
 }
