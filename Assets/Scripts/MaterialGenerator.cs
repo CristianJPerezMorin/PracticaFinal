@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,8 @@ public class MaterialGenerator : MonoBehaviour
     private List<GameObject> gameObjects = new List<GameObject>();
 
     Material material;
+
+    public TMP_Text textLevel;
 
     public static MaterialGenerator Instance { get; private set; }
 
@@ -68,7 +71,15 @@ public class MaterialGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(actualLevel != "")
+        {
+            GameManager.Instance.levelName = actualLevel;
+        }
+
+        if(textLevel != null)
+        {
+            textLevel.text = GameManager.Instance.levelName;
+        }
     }
 
     public void GenerateNewMaterial()

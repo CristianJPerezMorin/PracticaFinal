@@ -30,7 +30,8 @@ public class TeleporterActions : MonoBehaviour
 
                 if (SceneManager.GetActiveScene().name.Contains("Puzzle1"))
                 {
-                    SceneManager.LoadScene("Final");
+                    GameManager.Instance.stopTimer = false;
+                    SceneManager.LoadScene("MenuFinal");
                 }
             }
         }

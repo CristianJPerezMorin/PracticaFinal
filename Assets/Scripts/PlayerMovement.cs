@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
         speed = 12;
         jumpForce = 6;
-        turnSpeed = 90;
+        turnSpeed = 180;
 
         isGrounded = false;
         doJump = false;
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = fwd;
         transform.Rotate(0, move.x * turnSpeed * Time.deltaTime, 0);
 
-        animator.SetFloat("Velocidad", move.y);
+        animator.SetFloat("Velocidad", Mathf.Abs(move.y));
         animator.SetBool("Salto", doJump);
 
         if (isGrounded && !PuzzleManager.Instance.inPuzzleMode)

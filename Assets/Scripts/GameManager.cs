@@ -8,11 +8,15 @@ public class GameManager : MonoBehaviour
     public bool isPuzzleCompleted;
     public bool noMorePuzzles;
     public bool batteryObtained;
+    public bool stopTimer;
 
     public string gameScenePuzzle;
     public string gameSceneActive;
+    public string levelName;
 
     Material lastMaterial;
+
+    public float timer = 0;
 
     public static GameManager Instance { get; private set; }
 
@@ -61,6 +65,11 @@ public class GameManager : MonoBehaviour
         {
             gameScenePuzzle = SceneManager.GetActiveScene().name;
             gameSceneActive = "Active" + gameScenePuzzle.Substring(gameScenePuzzle.Length - 1);
+        }
+
+        if (!stopTimer)
+        {
+            timer += Time.deltaTime;
         }
     }
 }
