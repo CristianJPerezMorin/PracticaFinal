@@ -9,6 +9,8 @@ public class PuzzleManager : MonoBehaviour
     public bool isPuzzleFailed;
     public bool isPuzzleFinished;
 
+    public GameObject battery;
+
     public static PuzzleManager Instance { get; private set; }
 
     private void Awake()
@@ -43,6 +45,18 @@ public class PuzzleManager : MonoBehaviour
         if (isPuzzleFinished)
         {
             GameManager.Instance.isPuzzleCompleted = true;
+        }
+
+        if (GameManager.Instance.noMorePuzzles)
+        {
+            if (battery == null)
+            {
+                battery = GameObject.FindGameObjectWithTag("Battery");
+            }
+            else
+            {
+                battery.SetActive(true);
+            }
         }
     }
 }

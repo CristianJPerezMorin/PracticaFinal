@@ -50,7 +50,7 @@ public class MaterialGenerator : MonoBehaviour
             gameObjects.Add(go);
         }
 
-        if (SceneManager.GetActiveScene().name.Contains("Puzzle") || ((GameManager.Instance.isPuzzleCompleted || GameManager.Instance.noMorePuzzles) && SceneManager.GetActiveScene().name.Contains("Active")))
+        if (SceneManager.GetActiveScene().name.Contains("Puzzle0") || ((GameManager.Instance.isPuzzleCompleted || GameManager.Instance.noMorePuzzles) && SceneManager.GetActiveScene().name.Contains("Active")))
         {
             System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(pathMaterialFolder);
             countMaterials = dir.GetFiles().Length;

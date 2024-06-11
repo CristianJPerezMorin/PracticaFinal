@@ -37,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 
-        speed = 8;
-        jumpForce = 4;
+        speed = 12;
+        jumpForce = 6;
         turnSpeed = 90;
 
         isGrounded = false;
@@ -86,7 +86,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.CompareTag("Terrain")) 
+        if (collision.collider.CompareTag("Terrain") || collision.collider.CompareTag("Teleporter")) 
+        {
+            isGrounded = true;
+        }
+
+        if (collision.collider.CompareTag("Teleporter"))
         {
             isGrounded = true;
         }

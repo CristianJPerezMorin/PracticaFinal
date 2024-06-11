@@ -6,10 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MenuInicio.unity
+    guid: 75feb74d84842344ca08412b74972c8a
+  - enabled: 1
     path: Assets/Scenes/Active0.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Puzzle0.unity
     guid: 8764b77797de6f54ca329c0e7f98af9a
+  - enabled: 1
+    path: Assets/Scenes/Puzzle1.unity
+    guid: 418da66dda078ee40bb690d3792b76fa
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 53d86d2c55d3bcc46a194b9dc3edea37, type: 2}
