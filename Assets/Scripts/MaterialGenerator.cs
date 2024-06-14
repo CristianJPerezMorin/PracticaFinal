@@ -94,7 +94,7 @@ public class MaterialGenerator : MonoBehaviour
         switch (colorSelect)
         {
             case 0:
-                material.color = Color.red;
+                material.color = new Color(255f / (25.5f * colorSaturation), 0, 0, 1);
                 actualLevel += "R";
                 break;
             case 1:
@@ -102,7 +102,7 @@ public class MaterialGenerator : MonoBehaviour
                 actualLevel += "YR";
                 break;
             case 2:
-                material.color = Color.yellow;
+                material.color = new Color(255f / (25.5f * colorSaturation), 234.6f / (25.5f * colorSaturation), 4.08f / (25.5f * colorSaturation), 1);
                 actualLevel += "Y";
                 break;
             case 3:
@@ -110,7 +110,7 @@ public class MaterialGenerator : MonoBehaviour
                 actualLevel += "GY";
                 break;
             case 4:
-                material.color = Color.green;
+                material.color = new Color(0, 255f / (25.5f * colorSaturation), 0, 1);
                 actualLevel += "G";
                 break;
             case 5:
@@ -118,7 +118,7 @@ public class MaterialGenerator : MonoBehaviour
                 actualLevel += "BG";
                 break;
             case 6:
-                material.color = Color.blue;
+                material.color = new Color(0, 0, 255f / (25.5f * colorSaturation), 1);
                 actualLevel += "B";
                 break;
             case 7:

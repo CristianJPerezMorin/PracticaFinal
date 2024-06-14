@@ -19,7 +19,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 0
+    removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -71,7 +71,7 @@ ModelImporter:
       takeName: Armature|Desaparecer
       internalID: -2214566350310172659
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

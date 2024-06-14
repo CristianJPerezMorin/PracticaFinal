@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class TeleporterActions : MonoBehaviour
 {
     public GameObject luzTeleporter1, luzTeleporter2;
+    public bool canTeleportPlayer = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,15 +24,19 @@ public class TeleporterActions : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (SceneManager.GetActiveScene().name.Contains("Active0"))
+                if (canTeleportPlayer)
                 {
-                    SceneManager.LoadScene("Puzzle1");
-                }
+                    Debug.Log("adios");
+                    if (SceneManager.GetActiveScene().name.Contains("Active0"))
+                    {
+                        SceneManager.LoadScene("Puzzle1");
+                    }
 
-                if (SceneManager.GetActiveScene().name.Contains("Puzzle1"))
-                {
-                    GameManager.Instance.stopTimer = false;
-                    SceneManager.LoadScene("MenuFinal");
+                    if (SceneManager.GetActiveScene().name.Contains("Puzzle1"))
+                    {
+                        GameManager.Instance.stopTimer = false;
+                        SceneManager.LoadScene("MenuFinal");
+                    }
                 }
             }
         }
@@ -39,6 +44,19 @@ public class TeleporterActions : MonoBehaviour
         {
             luzTeleporter1.GetComponent<Light>().enabled = false;
             luzTeleporter2.GetComponent<Light>().enabled = false;
+        }
+
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            canTeleportPlayer = true;
+        }
+        else
+        {
+            canTeleportPlayer = false;
         }
     }
 }

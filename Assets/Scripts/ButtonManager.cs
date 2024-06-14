@@ -21,6 +21,11 @@ public class ButtonManager : MonoBehaviour
 
     public void PlayGame()
     {
+        SceneManager.LoadScene("Tutorial");
+    }
+
+    public void StartGame()
+    {
         SceneManager.LoadScene("Active0");
     }
 
