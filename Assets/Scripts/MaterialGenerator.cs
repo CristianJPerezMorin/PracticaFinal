@@ -58,7 +58,7 @@ public class MaterialGenerator : MonoBehaviour
             System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(pathMaterialFolder);
             countMaterials = dir.GetFiles().Length;
 
-            material = Resources.Load<Material>("Generates/Material" + ((countMaterials / 2) - 1));
+            material = Resources.Load<Material>("Generates/Entorno");
         }
         else
         {
@@ -84,7 +84,7 @@ public class MaterialGenerator : MonoBehaviour
 
     public void GenerateNewMaterial()
     {
-        material = new Material(Shader.Find("Standard"));
+        material = Resources.Load<Material>("Generates/Entorno");
 
         colorSelect = UnityEngine.Random.Range(0, 10);
         colorSaturation = UnityEngine.Random.Range(1, 10);
@@ -141,11 +141,11 @@ public class MaterialGenerator : MonoBehaviour
     {
         GenerateNewMaterial();
 
-        System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(pathMaterialFolder);
-        int countMaterials = dir.GetFiles().Length;
-        if (countMaterials != 0 ) { countMaterials /= 2; }
+        //System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(pathMaterialFolder);
+        //int countMaterials = dir.GetFiles().Length;
+        //if (countMaterials != 0 ) { countMaterials /= 2; }
 
-        AssetDatabase.CreateAsset(material, "Assets/Resources/Generates/Material" + countMaterials +".mat");
+        //AssetDatabase.CreateAsset(material, "Assets/Resources/Generates/Material" + countMaterials +".mat");
     }
 
     public void ApplyMaterialToTheScenery()

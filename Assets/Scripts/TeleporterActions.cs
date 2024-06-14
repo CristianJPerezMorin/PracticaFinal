@@ -26,7 +26,6 @@ public class TeleporterActions : MonoBehaviour
             {
                 if (canTeleportPlayer)
                 {
-                    Debug.Log("adios");
                     if (SceneManager.GetActiveScene().name.Contains("Active0"))
                     {
                         SceneManager.LoadScene("Puzzle1");
