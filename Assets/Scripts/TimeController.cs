@@ -11,7 +11,10 @@ public class TimeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        time.text += Math.Round(GameManager.Instance.timer, 2) + " segundos.";
+        float min = Mathf.FloorToInt(GameManager.Instance.timer / 60F);
+        float sec = Mathf.FloorToInt(GameManager.Instance.timer - min * 60);
+
+        time.text += min + " minutos " + sec + " segundos.";
     }
 
     // Update is called once per frame
