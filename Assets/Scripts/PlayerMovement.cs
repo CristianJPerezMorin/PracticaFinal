@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (stayInPlate)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (playerActions.actions["Interactuar"].ReadValue<float>() == 1)
             {
                 PuzzleManager.Instance.inPuzzleMode = true;
                 SceneManager.LoadScene(GameManager.Instance.gameScenePuzzle);
